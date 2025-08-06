@@ -51,7 +51,7 @@ def train_model(
     model.to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, mode='min', factor=0.5, patience=5, verbose=True
+        optimizer, mode='min', factor=0.5, patience=5
     ) if test_dataloader else optim.lr_scheduler.StepLR(
         optimizer, step_size=10, gamma=0.9
     )

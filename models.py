@@ -5,7 +5,7 @@ class LatentExtractor(nn.Module):
     def __init__(self):
         super().__init__()
         self.hubert = torchaudio.pipelines.HUBERT_BASE.get_model()
-        self.hubert = self.hubert.to('cuda')
+        self.hubert = self.hubert.to( torch.device("cuda" if torch.cuda.is_available() else "cpu"))
         self.hubert.eval()
         for p in self.hubert.parameters():
             p.requires_grad = False
